@@ -1,7 +1,7 @@
 require 'formula'
 
 # Main class describing formula
-class CreateRepoAT0104 < Formula
+class CreaterepoAT0104 < Formula
   homepage 'http://createrepo.baseurl.org//'
   url 'http://createrepo.baseurl.org/download/createrepo-0.10.4.tar.gz'
   sha256 'f850504a3ec7e556aaaa626d487e8b0def84ffea666fd30774cbbd575c128261'
