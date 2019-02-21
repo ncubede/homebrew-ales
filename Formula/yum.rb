@@ -15,7 +15,7 @@ class Yum < Formula
     inreplace 'Makefile', 'install:', 'install::'
     inreplace ['Makefile', 'docs/Makefile', 'etc/Makefile', 'rpmUtils/Makefile', 'yum/Makefile'], 'install -m', '$(INSTALL) -m'
     inreplace ['etc/Makefile'], 'install -D', '$(INSTALL) -D'
-    inreplace ['rpmUtils/Makefile', 'yum/Makefile'], '$(shell $(PYTHON) -c \'import sys; print sys.prefix\')', prefix
+    inreplace ['rpmUtils/Makefile', 'yum/Makefile'], '$(shell $(PYTHON) -c \'import sys; print sys.prefix\')', ''
     system 'make', "DESTDIR=#{prefix}", 'INSTALL=ginstall', 'clean', 'install'
   end
 
