@@ -12,6 +12,8 @@ class Pycurl < Formula
   def install
     pypref = `python-config --prefix`.chomp
     pybin = "#{pypref}/bin/python"
+    pyver = `pybin -c 'import sys; print "%.3s" %(sys.version)'`
+    ENV['PYTHONPATH'] = "#{prefix}/lib/python#{pyver}/site-packages"
 
     system pybin, 'setup.py', 'build', '--with-openssl'
     system pybin, 'setup.py', 'install', "--prefix=#{prefix}", '--with-openssl'
