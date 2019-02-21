@@ -1,23 +1,22 @@
 require 'formula'
 
 # Main class describing formula
-class Yum < Formula
-  homepage 'http://yum.baseurl.org//'
-  url 'http://yum.baseurl.org/download/3.4/yum-3.4.3.tar.gz'
-  sha256 '0178f97820ced9bfbcc269e6fc3ea35e29e35e2d263d24c7bff8660ee62d37ca'
+class Urlgrabber < Formula
+  homepage 'http://urlgrabber.baseurl.org//'
+  url 'http://urlgrabber.baseurl.org/download/urlgrabber-3.10.2.tar.gz'
+  sha256 '53691185e3d462bb0fa8db853a205ee79cdd4089687cddd22cabb8b3d4280142'
 
-  depends_on 'ncubede/ales/yum-metadata-parser@1.1.4'
-  depends_on 'ncubede/ales/rpm-python'
-  depends_on 'ncubede/ales/urlgrabber'
   depends_on 'coreutils'
   depends_on 'libxml2' => 'with-python'
+  depends_on 'python@2'
 
   def install
     inreplace 'Makefile', 'install:', 'install::'
     inreplace ['Makefile', 'docs/Makefile', 'etc/Makefile', 'rpmUtils/Makefile', 'yum/Makefile'], 'install -m', '$(INSTALL) -m'
     inreplace ['etc/Makefile'], 'install -D', '$(INSTALL) -D'
     inreplace ['rpmUtils/Makefile', 'yum/Makefile'], '$(shell $(PYTHON) -c \'import sys; print sys.prefix\')', ''
-    system 'make', "DESTDIR=#{prefix}", 'INSTALL=ginstall', 'clean', 'install'
+    system pybin, 'setup.py', 'build'
+    system pybin, 'setup.py', 'install', "--prefix=#{prefix}"
   end
 
 end
