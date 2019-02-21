@@ -11,6 +11,9 @@ class Urlgrabber < Formula
   depends_on 'python@2'
 
   def install
+    pypref = `python-config --prefix`.chomp
+    pybin = "#{pypref}/bin/python"
+
     system pybin, 'setup.py', 'build'
     system pybin, 'setup.py', 'install', "--prefix=#{prefix}"
   end
