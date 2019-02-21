@@ -14,7 +14,7 @@ class Pycurl < Formula
     pybin = "#{pypref}/bin/python"
 
     system pybin, 'setup.py', 'build'
-    system pybin, 'setup.py', 'install', "--prefix=#{prefix}"
+    system pybin, 'setup.py', 'install', "--prefix=#{prefix}", '--with-openssl'
   end
 
 end
