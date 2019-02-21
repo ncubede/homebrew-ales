@@ -14,6 +14,7 @@ class CreaterepoAT0104 < Formula
   def install
     inreplace ['bin/createrepo', 'bin/modifyrepo'], '/usr/share/createrepo', "#{HOMEBREW_PREFIX}/share/createrepo"
     inreplace ['dmd.py', 'worker.py', 'genpkgmetadata.py', 'mergerepo.py', 'modifyrepo.py'], '/usr/bin/python', '/usr/bin/env python'
+    inreplace 'Makefile', '(cd $(DESTDIR)$(compdir); for n in $(ALIASES); do ln -s $(PKGNAME) $$n; done)', '(cd $(DESTDIR)$(compdir); for n in $(ALIASES); do ln -sf $(PKGNAME) $$n; done)'
     inreplace "createrepo/Makefile", '$(shell $(PYTHON) -c \'import sys; print sys.prefix\')', prefix
     system 'make', "prefix=#{prefix}", 'INSTALL=ginstall -p --verbose', "compdir=#{HOMEBREW_PREFIX}/etc/bash_completion.d", 'clean', 'install'
   end
