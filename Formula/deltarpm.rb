@@ -6,13 +6,16 @@ class Deltarpm < Formula
   url 'https://github.com/rpm-software-management/deltarpm/archive/3.6.1.tar.gz'
   sha256 '357509c40ef57fdba9851cdce41067bd0e4399b2b2f90094735bccf753c74d8a'
 
+  depends_on 'xz'
   depends_on 'ncubede/ales/rpm-python'
 
   def install
     python_prefix = `python-config --prefix`.chomp
     python = "#{python_prefix}/bin/python"
 
-    inreplace 'Makefile', '-DDELTARPM_64BIT', '-DDELTARPM_64BIT -Dfseeko64=fseek -Dfopen64=fopen -Doff64_t=off_t -Dftello64=ftello -Dpread64=pread -Dpwrite64=pwrite -Dmkstemp64=mkstemp -Dftruncate64=ftruncate '
+    inreplace 'Makefile', '-DDELTARPM_64BIT', '-DDELTARPM_64BIT -Dfseeko64=fseek -Dfopen64=fopen -Doff64_t=off_t -Dftello64=ftello -Dpread64=pread -Dpwrite64=pwrite -Dmkstemp64=mkstemp -Dftruncate64=ftruncate'
+    inreplace 'Makefile', '-fPIC -O2 -Wall -g', '-fPIC -O2 -Wall -g -I/usr/local/include'
+    inreplace 'Makefile', '-llzma', '-L/usr/local/lib -llzma'
     inreplace 'Makefile', 'install -m', '$(INSTALL) -m'
     inreplace 'Makefile', '`$$PY -c \'from distutils import sysconfig ; print(sysconfig.get_python_lib(1))\'`', "%{prefix}/lib"
     inreplace 'md5.c', 'memset(ctx, 0, sizeof(ctx));', 'memset(ctx, 0, sizeof(*ctx));'
