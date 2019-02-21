@@ -16,7 +16,7 @@ class CreaterepoAT0104 < Formula
       ['bin/createrepo', 'bin/modifyrepo'], '/usr/share/createrepo', "#{HOMEBREW_PREFIX}/share/createrepo")
 
     inreplace(
-      ['dmd.py', 'dumpMetadata.py', 'genpkgmetadata.py', 'readMetadata.py'], '/usr/bin/python', '/usr/bin/env python')
+      ['dmd.py', 'worker.py', 'genpkgmetadata.py', 'mergerepo.py', 'modifyrepo.py'], '/usr/bin/python', '/usr/bin/env python')
 
     system(
       'make', "prefix=#{prefix}", 'INSTALL=ginstall -p --verbose', 'install')
