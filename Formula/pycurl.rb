@@ -10,13 +10,13 @@ class Pycurl < Formula
   depends_on 'python@2'
 
   def install
-    pypref = `python-config --prefix`.chomp
-    pybin = "#{pypref}/bin/python"
-    pyver = `#{pybin} -c 'import sys; print "%.3s" %(sys.version)'`
-    ENV['PYTHONPATH'] = "#{prefix}/lib/python2.7/site-packages"
+    python_prefix = `python-config --prefix`.chomp
+    python = "#{python_prefix}/bin/python"
+    pyver = `#{python} -c 'import sys; print "%.3s" %(sys.version)'`
+    ENV['PYTHONPATH'] = "#{prefix}/lib/python#{pyver}/site-packages"
 
-    system pybin, 'setup.py', 'build', '--with-openssl'
-    system pybin, 'setup.py', 'install', "--prefix=#{prefix}", '--with-openssl'
+    system python, 'setup.py', 'build', '--with-openssl'
+    system python, 'setup.py', 'install', "--prefix=#{prefix}", '--with-openssl'
   end
 
 end
