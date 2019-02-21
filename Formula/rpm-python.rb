@@ -38,11 +38,9 @@ class RpmPython < Formula
     ENV.prepend_path "PKG_CONFIG_PATH", Formula["lua@5.1"].opt_libexec/"lib/pkgconfig"
 
     inreplace ['scripts/find-provides', 'scripts/find-requires'], '/usr/lib/rpm/rpmdeps', "#{prefix}/lib/rpm/rpmdeps"
-
     inreplace ["macros.in", "platform.in"], "@prefix@", HOMEBREW_PREFIX
-
-    inreplace ["scripts/pkgconfigdeps.sh"], "/usr/bin/pkg-config", Formula["pkg-config"].opt_bin/"pkg-config"
-
+    inreplace "scripts/pkgconfigdeps.sh", "/usr/bin/pkg-config", Formula["pkg-config"].opt_bin/"pkg-config"
+    inreplace 'rpmio/digest_openssl.c', 'EVP_md2', 'EVP_md_null'
 
     system "./configure", "--disable-dependency-tracking",
                           "--disable-silent-rules",
