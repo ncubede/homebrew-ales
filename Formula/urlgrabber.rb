@@ -6,16 +6,14 @@ class Urlgrabber < Formula
   url 'http://urlgrabber.baseurl.org/download/urlgrabber-3.10.2.tar.gz'
   sha256 '53691185e3d462bb0fa8db853a205ee79cdd4089687cddd22cabb8b3d4280142'
 
-  depends_on 'coreutils'
-  depends_on 'libxml2' => 'with-python'
-  depends_on 'python@2'
+  depends_on ncubede/ales/pycurl
 
   def install
-    pypref = `python-config --prefix`.chomp
-    pybin = "#{pypref}/bin/python"
+    python_prefix = `python-config --prefix`.chomp
+    python = "#{python_prefix}/bin/python"
 
-    system pybin, 'setup.py', 'build'
-    system pybin, 'setup.py', 'install', "--prefix=#{prefix}"
+    system python, 'setup.py', 'build'
+    system python, 'setup.py', 'install', "--prefix=#{prefix}"
   end
 
 end

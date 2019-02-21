@@ -13,10 +13,10 @@ class YumMetadataParserAT114 < Formula
 
   def install
     # Fix for removed python. stuff... Argh!
-    pypref = `python-config --prefix`.chomp
-    pybin = "#{pypref}/bin/python"
+    python_prefix = `python-config --prefix`.chomp
+    python = "#{python_prefix}/bin/python"
 
-    system pybin, 'setup.py', 'build'
-    system pybin, 'setup.py', 'install', "--prefix=#{prefix}"
+    system python, 'setup.py', 'build'
+    system python, 'setup.py', 'install', "--prefix=#{prefix}"
   end
 end

@@ -6,11 +6,9 @@ class Yum < Formula
   url 'http://yum.baseurl.org/download/3.4/yum-3.4.3.tar.gz'
   sha256 '0178f97820ced9bfbcc269e6fc3ea35e29e35e2d263d24c7bff8660ee62d37ca'
 
-  depends_on 'ncubede/ales/yum-metadata-parser@1.1.4'
   depends_on 'ncubede/ales/rpm-python'
+  depends_on 'ncubede/ales/yum-metadata-parser@1.1.4'
   depends_on 'ncubede/ales/urlgrabber'
-  depends_on 'coreutils'
-  depends_on 'libxml2' => 'with-python'
 
   def install
     inreplace 'Makefile', 'install:', 'install::'
