@@ -19,7 +19,7 @@ class CreaterepoAT0104 < Formula
       ['dmd.py', 'worker.py', 'genpkgmetadata.py', 'mergerepo.py', 'modifyrepo.py'], '/usr/bin/python', '/usr/bin/env python')
 
     system(
-      'make', "prefix=#{prefix}", 'INSTALL=ginstall -p --verbose', 'install')
+      'make', "prefix=#{prefix}", 'INSTALL=ginstall -p --verbose', 'compdir=#{HOMEBREW_PREFIX}/etc/bash_completion.d', 'install')
   end
 
   def caveats
