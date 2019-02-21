@@ -11,10 +11,6 @@ class Urlgrabber < Formula
   depends_on 'python@2'
 
   def install
-    inreplace 'Makefile', 'install:', 'install::'
-    inreplace ['Makefile', 'docs/Makefile', 'etc/Makefile', 'rpmUtils/Makefile', 'yum/Makefile'], 'install -m', '$(INSTALL) -m'
-    inreplace ['etc/Makefile'], 'install -D', '$(INSTALL) -D'
-    inreplace ['rpmUtils/Makefile', 'yum/Makefile'], '$(shell $(PYTHON) -c \'import sys; print sys.prefix\')', ''
     system pybin, 'setup.py', 'build'
     system pybin, 'setup.py', 'install', "--prefix=#{prefix}"
   end
