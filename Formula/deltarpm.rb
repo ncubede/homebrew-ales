@@ -21,6 +21,7 @@ class Deltarpm < Formula
     system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}", 'clean'
     system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}", 'zlib-1.2.2.f-rsyncable/libz.a'
     system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}"
+    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}", '_deltarpmmodule.so'
     system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}", 'install'
   end
 
