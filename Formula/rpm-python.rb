@@ -22,7 +22,6 @@ class RpmPython < Formula
   depends_on "zstd"
 
   conflicts_with 'rpm', because: 'These are two different forks of the same tool.'
-  conflicts_with 'rpm4', because: 'These are two different forks of the same tool.'
 
   def install
     pypref = `python-config --prefix`.chomp
