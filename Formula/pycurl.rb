@@ -12,10 +12,12 @@ class Pycurl < Formula
   def install
     python_prefix = `python-config --prefix`.chomp
     python = "#{python_prefix}/bin/python"
-    pyver = `#{python} -c 'import sys; print "%.3s" %(sys.version)'`.chomp
-    ENV['PYTHONPATH'] = "#{prefix}/lib/python#{pyver}/site-packages"
+    python_version = `#{python} -c 'import sys; print "%.3s" %(sys.version)'`.chomp
+    install_dir = "#{prefix}/lib/python#{python_version}/site-packages"
 
+    ENV['PYTHONPATH'] = install_dir    
     system python, 'setup.py', 'build', '--with-openssl'
+    system 'ginstall', '-d', '-m', '755', install_dir
     system python, 'setup.py', 'install', "--prefix=#{prefix}", '--with-openssl'
   end
 
