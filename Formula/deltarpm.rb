@@ -14,11 +14,14 @@ class Deltarpm < Formula
 
     inreplace 'Makefile', '-DDELTARPM_64BIT', '-DDELTARPM_64BIT -Dfseeko64=fseek -Dfopen64=fopen -Doff64_t=off_t -Dftello64=ftello -Dpread64=pread -Dpwrite64=pwrite -Dmkstemp64=mkstemp -Dftruncate64=ftruncate '
     inreplace 'Makefile', 'install -m', '$(INSTALL) -m'
-    inreplace 'Makefile', '`$PY -c \'from distutils import sysconfig ; print(sysconfig.get_python_lib(1))\'`', "%{prefix}/lib"
+    inreplace 'Makefile', '`$$PY -c \'from distutils import sysconfig ; print(sysconfig.get_python_lib(1))\'`', "%{prefix}/lib"
     inreplace 'md5.c', 'memset(ctx, 0, sizeof(ctx));', 'memset(ctx, 0, sizeof(*ctx));'
     inreplace 'makedeltarpm.c', 'if (!strcmp(c2, "off") != 0)', 'if (!strcmp(c2, "off"))'
 
-    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}", 'all', 'install'
+    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}", 'clean'
+    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}", 'zlib-1.2.2.f-rsyncable/libz.a'
+    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}"
+    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', "PYTHONS=%{python}", 'install'
   end
 
 end
