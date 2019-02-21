@@ -13,7 +13,7 @@ class Pycurl < Formula
     pypref = `python-config --prefix`.chomp
     pybin = "#{pypref}/bin/python"
 
-    system pybin, 'setup.py', 'build'
+    system pybin, 'setup.py', 'build', '--with-openssl'
     system pybin, 'setup.py', 'install', "--prefix=#{prefix}", '--with-openssl'
   end
 
