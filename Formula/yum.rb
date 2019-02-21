@@ -15,7 +15,7 @@ class Yum < Formula
     inreplace 'Makefile', 'install:', 'install::'
     inreplace ['Makefile', 'docs/Makefile', 'etc/Makefile', 'rpmUtils/Makefile', 'yum/Makefile'], 'install -m', '$(INSTALL) -m'
     inreplace ['etc/Makefile'], 'install -D', '$(INSTALL) -D'
-    system 'make', "prefix=#{prefix}", 'INSTALL=ginstall', 'clean', 'install'
+    system 'make', "DESTDIR=#{prefix}", 'INSTALL=ginstall', 'clean', 'install'
   end
 
 end
