@@ -18,9 +18,10 @@ class Vpnc < Formula
   depends_on 'coreutils'
 
   def install
-    inreplace 'Makefile', 'install -m', '$(INSTALL) -m '
-    system 'make', "PREFIX=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', 'clean'
-    system 'make', "PREFIX=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', 'install'
+    inreplace 'Makefile', 'install -', '$(INSTALL) -'
+    inreplace 'Makefile', 'install v', '$(INSTALL) v'
+    system 'make', "PREFIX=#{prefix}", 'ETCDIR=$(PREFIX)/etc/vpnc', 'INSTALL=/usr/local/bin/ginstall'
+    system 'make', "PREFIX=#{prefix}", 'ETCDIR=$(PREFIX)/etc/vpnc', 'INSTALL=/usr/local/bin/ginstall', 'install'
   end
 
 end
