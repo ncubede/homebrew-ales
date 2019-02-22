@@ -21,6 +21,8 @@ class Vpnc < Formula
     inreplace 'Makefile', 'install -', '$(INSTALL) -'
     inreplace 'Makefile', 'install v', '$(INSTALL) v'
     inreplace 'Makefile', 'shell pkg-config', 'shell /usr/local/bin/pkg-config'
+    inreplace 'config.c', '/etc/', "#{prefix}/etc/"
+    inreplace 'config.c', '/var/', "#{prefix}/var/"
     system 'make', "PREFIX=#{prefix}", 'ETCDIR=$(PREFIX)/etc/vpnc', 'INSTALL=/usr/local/bin/ginstall'
     system 'make', "PREFIX=#{prefix}", 'ETCDIR=$(PREFIX)/etc/vpnc', 'INSTALL=/usr/local/bin/ginstall', 'install'
   end
