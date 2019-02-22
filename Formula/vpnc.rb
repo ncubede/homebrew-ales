@@ -1,7 +1,7 @@
 require 'formula'
 
 # Main class describing formula
-class Deltarpm < Formula
+class Vpnc < Formula
   homepage 'https://github.com/breiter/vpnc.git'
   url 'https://github.com/ncubede/homebrew-ales/blob/master/Archives/vpnc-0.5.3.tar.gz?raw=true'
   sha256 '8709945bbfd43702f2d6eafc49e2907ba3cf90fcea1705e8007025ad802c115f'
