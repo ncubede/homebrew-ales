@@ -23,11 +23,11 @@ class Deltarpm < Formula
     inreplace 'md5.c', 'memset(ctx, 0, sizeof(ctx));', 'memset(ctx, 0, sizeof(*ctx));'
     inreplace 'makedeltarpm.c', 'if (!strcmp(c2, "off") != 0)', 'if (!strcmp(c2, "off"))'
 
-    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', 'clean'
-    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', 'zlib-1.2.2.f-rsyncable/libz.a'
-    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall'
-    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', '_deltarpmmodule.so'
-    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall', 'install'
+    system 'make', "prefix=#{prefix}", 'clean'
+    system 'make', "prefix=#{prefix}", 'zlib-1.2.2.f-rsyncable/libz.a'
+    system 'make', "prefix=#{prefix}"
+    system 'make', "prefix=#{prefix}", '_deltarpmmodule.so'
+    system 'make', "prefix=#{prefix}", 'INSTALL=/usr/local/bin/ginstall --verbose', 'install'
   end
 
 end
