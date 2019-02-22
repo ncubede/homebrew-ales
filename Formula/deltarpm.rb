@@ -19,7 +19,7 @@ class Deltarpm < Formula
     inreplace 'Makefile', 'PYCFLAGS=`$$PY-config --cflags`;', 'PYCFLAGS=`$$PY-config --cflags`; PYLDFLAGS=`$$PY-config --ldflags`;'
     inreplace 'Makefile', '-shared -Wl,-soname,_deltarpmmodule.so', '-dylib -arch x86_64 $$PYLDFLAGS'
     inreplace 'Makefile', 'install -m', '$(INSTALL) -m'
-    inreplace 'Makefile', '`$$PY -c \'from distutils import sysconfig ; print(sysconfig.get_python_lib(1))\'`', "%{prefix}/lib"
+    inreplace 'Makefile', '`$$PY -c \'from distutils import sysconfig ; print(sysconfig.get_python_lib(1))\'`', prefix'/lib'
     inreplace 'md5.c', 'memset(ctx, 0, sizeof(ctx));', 'memset(ctx, 0, sizeof(*ctx));'
     inreplace 'makedeltarpm.c', 'if (!strcmp(c2, "off") != 0)', 'if (!strcmp(c2, "off"))'
 
