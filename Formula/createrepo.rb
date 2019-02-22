@@ -6,6 +6,7 @@ class Createrepo < Formula
   url 'http://createrepo.baseurl.org/download/createrepo-0.10.4.tar.gz'
   sha256 'f850504a3ec7e556aaaa626d487e8b0def84ffea666fd30774cbbd575c128261'
 
+  depends_on 'ncubede/ales/deltarpm'
   depends_on 'ncubede/ales/yum'
   depends_on 'coreutils'
   depends_on 'libxml2' => 'with-python'
