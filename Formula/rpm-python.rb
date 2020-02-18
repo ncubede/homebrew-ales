@@ -9,7 +9,7 @@ class RpmPython < Formula
   depends_on 'pkg-config' => :build
   depends_on 'nss'
   depends_on 'nspr'
-  depends_on "python@2"
+  depends_on "ncubede/ales/python@2"
   depends_on "berkeley-db"
   depends_on "gettext"
   depends_on "libarchive"

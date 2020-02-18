@@ -7,7 +7,7 @@ class Pycurl < Formula
 
   depends_on 'coreutils'
   depends_on 'libxml2' => 'with-python'
-  depends_on 'python@2'
+  depends_on 'ncubede/ales/python@2'
 
   def install
     python_prefix = `python-config --prefix`.chomp

@@ -9,7 +9,7 @@ class YumMetadataParser < Formula
   depends_on 'pkg-config' => :build
   depends_on 'glib'
   depends_on 'sqlite3'
-  depends_on "python@2"
+  depends_on "ncubede/ales/python@2"
 
   def install
     # Fix for removed python. stuff... Argh!
